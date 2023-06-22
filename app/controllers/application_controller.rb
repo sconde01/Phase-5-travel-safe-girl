@@ -1,9 +1,27 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
-
-  def hello_world
-    session[:count] = (session[:count] || 0) + 1
-    render json: { count: session[:count] }
-  end
   
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+
+  before_action :authorize
+
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
+
+  def logged_in
+    !!session[:user_id] # two bangs for boolean value true ("Bang Bang! you're a boolean now!"")
+  end
+
+  #authorize: if someone is logged_in, then they are authorized to access, if not error
+  def authorize
+    render json: { errors: ["Not authorized. Please Login."] }, status: 
+    :unauthorized unless logged_in
+  end
+
+  def render_unprocessable_entity_response(exception)
+    render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
+  end
+
+
 end
