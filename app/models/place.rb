@@ -3,4 +3,12 @@ class Place < ApplicationRecord
   has_many :users, through: :reviews
 
   # has_and_belongs_to_many :business
+
+  validates :name, presence: true
+  validates :location, presence: true
+  validates :description, presence: true, length: { maximum: 500 }
+  validates :image_url, presence: true
+  validates :safety_features, presence: true, length: { maximum: 100 }
+  validates :category, presence: true
+  
 end

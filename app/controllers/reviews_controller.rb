@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-    params.permit(:review, :food_truck_id)
+    params.permit(:title, :body, :safe, :budget_friendly, :place_id)
     end
 
     def find_review
