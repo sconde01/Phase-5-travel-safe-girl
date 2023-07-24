@@ -48,7 +48,7 @@ const NewPlaceForm = () => {
   }
 
   //category dropdown
-  const places = useSelector(store => store.placesReducer)
+  const { places } = useSelector(store => store.placesReducer)
 
 
   const category_dropdown = places.map( place =>

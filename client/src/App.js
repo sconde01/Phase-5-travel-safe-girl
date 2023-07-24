@@ -14,6 +14,7 @@ import Errors from "./errors/Errors";
 import { loadCurrentUser, loadUsers } from "./redux/actions/users";
 import NewReview from "./reviews/NewReview";
 import UserReviews from "./users/UserReviews";
+import EditReview from "./reviews/EditReview";
 
 function App() {
   // const reduxState = useSelector((store) => store );
@@ -40,6 +41,7 @@ function App() {
             <Route path="/places/:id/new-review" element= { <NewReview/>} />
             <Route path="/places/new" element= { <NewPlaceForm/>} />
             <Route path="/places/user-reviews" element= { <UserReviews/>} />
+            <Route path="/reviews/:id/edit" element= { <EditReview/>} />
             <Route path="/login" element= { <Login/>} />
             <Route path="/signup" element= { <Signup/>} />
           </Routes>

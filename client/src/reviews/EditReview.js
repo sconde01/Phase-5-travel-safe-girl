@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { clearErrors, setErrors } from '../redux/actions/errors'
-import { addReview } from '../redux/actions/places'
 import {Button} from "@material-tailwind/react";
+import { editReview } from '../redux/actions/places';
 
-const NewReview = () => {
-  const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
-  const  { places }  = useSelector(store => store.placesReducer)
+const EditReview = () => {
+  const { currentUser } = useSelector(store => store.usersReducer)
+  // const  { places }  = useSelector(store => store.placesReducer)
   const id = parseInt(useParams().id);
   
-  const place = places.find(place => place?.id === id);
+  const review = currentUser?.reviews?.find(review => review.id === id);
   
   console.log("currentUser", currentUser)
+  console.log("review at editreview",review)
 
-  const placeId = place ? place.id : null;
+  // const placeId = place ? place.id : null;
 
   const initialState = {
-    title: "",
-    body: "",
-    safe: "",
-    budget_friendly: "",
-    place_id: placeId,
-    user_id: currentUser?.id
+    title: review.review_title,
+    body: review.review_body,
+    safe: review.safe,
+    budget_friendly: review.budget_friendly,
+    // place_id: placeId,
+    // user_id: currentUser?.id
   }
   
   const [ formData, setFormData ] = useState(initialState)
@@ -30,17 +31,6 @@ const NewReview = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
-
-  useEffect(() => {
-    if(!loggedIn) {
-      navigate('/login')
-    }
-    return () => {
-      dispatch(clearErrors)
-    }
-  }, [loggedIn, navigate, dispatch])
-
- 
   const handleChange = e => {
     const {name, value} = e.target;
     //console.log(value)
@@ -52,23 +42,16 @@ const NewReview = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-//put a debuggger
-//check to see what i'm sending back in formData --sources -->scope
-//what my action.payload when I get to addReview dispatch action
-//once I figure out action.payload, move on to reducer
-//debugger
-
-    // dispatch(addReview(formData, navigate))
-    dispatch(addReview(formData, navigate, setErrors))
+    dispatch(editReview(id, formData, navigate, setErrors))
   }
 
   
   return (
     <div>
-    <h1><center>Add a Review for
+     <h1><center>EDIT Review
       <br/>
-      <b>{ place?.name }!</b></center></h1>
-    <center><img src={ place?.image_url }alt="img-blur-shadow"  className='contain' /></center>
+      <b>{ review.place_name }!</b></center></h1> 
+    <center><img src={ review.place_image }alt="img-blur-shadow"  className='contain' /></center>
     
     <form className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3" onSubmit={handleSubmit}>
     <div className="flex flex-wrap -mx-3 mb-6">
@@ -81,7 +64,6 @@ const NewReview = () => {
           id="title" 
           type="text"
           name = "title" 
-          placeholder="Title your review"
           value={ formData.title}
           onChange={handleChange}/>
      {/* <p class="text-red-500 text-xs italic">Please fill out this field.</p> */}
@@ -98,7 +80,6 @@ const NewReview = () => {
           id="description" 
           name = "body"
           type="text" 
-          placeholder="Tell us about this place"
           value={ formData.body}
           onChange={handleChange}/>
        <p className="text-gray-600 text-xs italic">Max 500 characters</p>
@@ -144,10 +125,11 @@ const NewReview = () => {
         </div>
       </div>
       </div>
-      <Button className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3" type="submit" value="Add Place" > Add Review</Button>
+      <Button className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3" type="submit" value="Add Place" > UPDATE Review</Button>
 </form>
   </div>
   )
 }
 
-export default NewReview
+
+export default EditReview

@@ -22,10 +22,12 @@ export const loadUsers =() => {
         if(!data.errors) {
           //dispatch an actiont hat updates the store with the currentUser and logs us in
           const action = {
-            type: "LOGIN_USER",
+            type: "LOAD_CURRENT_USER",
             payload: data
           }
-          dispatch(action)}
+          dispatch(action);
+          dispatch(clearErrors)
+        }
       })
     }
   }
@@ -38,22 +40,26 @@ export const loadUsers =() => {
           "Accept": "application/json",
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(user, navigate),
       })
-        .then(resp => resp.json())
-        .then(data => {
-          if(data.errors) {
-            dispatch(setErrors(data.errors));
-          } else {
+      .then((resp) => {
+        if (resp.ok) {
+          resp.json().then((user) => {
             const action = {
               type: "LOGIN_USER",
-              payload: data
+              payload: user
             }
-            dispatch(action)
+            dispatch(action);
             dispatch(clearErrors())
-            navigate("/places")
-          }
-        })
+            navigate('/places')
+          });
+        } else {
+          resp.json()
+            .then((err) => {
+              dispatch(setErrors(err.errors))
+            })
+        }
+      });
     }
   }
 
@@ -65,13 +71,14 @@ export const loadUsers =() => {
           "Accept": "application/json",
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(user, navigate),
+        body: JSON.stringify(user)
       })
         .then(r => r.json())
         .then(data => {
           if(data.errors) {
             dispatch(setErrors(data.errors));
           } else {
+            dispatch(clearErrors())
             dispatch({
               type: "LOGIN_USER",
               payload: data
@@ -80,6 +87,7 @@ export const loadUsers =() => {
               type: "ADD_USER",
               payload: data
             })
+            dispatch(clearErrors())
             navigate("/places")
           }
         })

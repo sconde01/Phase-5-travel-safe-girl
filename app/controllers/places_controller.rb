@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  skip_before_action :authorize, only: [:index, :show, :reviews, :food_truck_reviews]
+  skip_before_action :authorize, only: [:index, :show]
 
   def index
     render json: Place.all

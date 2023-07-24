@@ -11,6 +11,7 @@ class UserSerializer < ActiveModel::Serializer
         budget_friendly: review.budget_friendly,
         place_id: review.place.id,
         place_name: review.place.name,
+        place_image: review.place.image_url,
         created_at: review.created_at
       }
     end

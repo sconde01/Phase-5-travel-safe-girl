@@ -1,40 +1,46 @@
-import { updateResource, addResource, updateResourceCollection } from "../../Globals"
+import { updateResource, addResource, updateResourceCollection } from "../../Globals";
 
-// const initialState = {
-//   reviews: [],
-//   currentUser: {},
-//   places: []
+const initialState = {
+  reviews: [],
+  currentUser: {}, // This will be updated later when the user logs in
+  places: [],
+};
 
-// }
-
-export const placesReducer = (state=[], action) => {
-  // action is an object that has these key values applied: action.type, action.payload
-
-  switch(action.type) {
+export const placesReducer = (state = initialState, action) => {
+  switch (action.type) {
     case "LOAD_PLACES":
-      // return new non destructive state
-      return action.payload
+      return { ...state, places: action.payload };
     case "ADD_PLACE":
-      return addResource(state, action.payload)
-      //return [...state, action.payload]
+      return addResource(state, action.payload);
     case "ADD_PLACE_REVIEW":
-      const place = state.find(p => p.id === action.payload.place_id)
-      const updatedReviews = addResource(place.reviews, action.payload)
-      return updatedReviews
-      // const updatedPlace = updateResourceCollection(state.id, "reviews", updatedReviews)
-      // const updateCurrentUserReviews = {...state.currentUser, reviews: updatedReviews}
-      // return [updateResource(state, updatedPlace), updateCurrentUserReviews]
-      
-    case "EDIT_PLACE_REVIEW":
-      return updateResource(state, action.payload)
+      const { place_id } = action.payload;
 
+      // Find the place in the places array that matches the place_id of the review
+      const updatedPlaces = state.places.map((place) => {
+        if (place.id === place_id) {
+          // Add the review to the place's reviews array
+          const updatedReviews = [...place.reviews, action.payload];
+          console.log("updatedReviews", updatedReviews)
+          return { ...place, reviews: updatedReviews };
+        }
+        return place;
+      });
+      console.log("updatedPlace", updatedPlaces)
+      // Update the user state to include the review in the currentUser's reviews array 
+      const updatedCurrentUser = { ...state.currentUser, reviews: [...state.currentUser.reviews, action.payload] };
+      console.log("updatedCurrentUser", updatedCurrentUser)
+      return { ...state, places: updatedPlaces, currentUser: updatedCurrentUser };
+
+    case "EDIT_PLACE_REVIEW":
+      const updatedPlaceReview = state.places.map(place => place.id === action.payload.id ? action.payload : place);
+      return {
+        ...state,
+        places: updatedPlaceReview
+      };
 
     default:
       return state;
-
   }
+};
 
-
-}
-
-export default placesReducer ; 
+export default placesReducer;

@@ -12,11 +12,20 @@ class ReviewsController < ApplicationController
     render json: @review  
   end
 
-  # POST /reviews/:id
+  # POST /reviews
+  # def create
+  #   review = current_user.reviews.create!(review_params)
+  #   render json: review, status: :created
+  # end
   def create
-    review = current_user.reviews.create!(review_params)
-    render json: review, status: :created
+    review = current_user.reviews.build(review_params)
+    if review.save
+      render json: review, status: :created
+    else
+      render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+    end
   end
+  
 
   # PATCH /reviews:id
   def update
@@ -38,9 +47,9 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-    params.permit(:title, :body, :safe, :budget_friendly, :place_id)
+    params.permit(:title, :body, :safe, :budget_friendly, :place_id, :user_id)
     end
-
+    
     def find_review
       @review = Review.find_by(id: params[:id])
       # byebug

@@ -14,11 +14,11 @@ import {
   
 
 const PlaceReviews = () => {
-  const places  = useSelector(state => state.placesReducer)
+  const { places }  = useSelector(state => state.placesReducer)
   const { loggedIn } = useSelector(store => store.usersReducer)
   const id = parseInt(useParams().id);
 
-  const place = places?.find(place => place.id === id);
+  const place = places.find(place => place.id === id);
 
   const show_reviews = place.reviews?.map(review =>
     <Card color="blue-gray" >

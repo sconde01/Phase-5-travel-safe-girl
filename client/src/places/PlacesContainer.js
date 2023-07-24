@@ -7,7 +7,7 @@ const PlacesContainer = ({loading}) => {
 
   const navigate = useNavigate();
   // const { loggedIn } = useSelector(store => store.usersReducer);
-  const places = useSelector(store => store.placesReducer);
+  const { places } = useSelector(store => store.placesReducer);
 
   // useEffect(() => {
   //   if(!loading && !loggedIn) {
