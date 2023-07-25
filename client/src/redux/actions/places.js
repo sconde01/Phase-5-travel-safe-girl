@@ -24,7 +24,7 @@ export const loadPlaces = () => {
 
 }
 
-export const addPlace = (formData, navigate) => {
+export const addPlace = (formData, navigate, setErrors) => {
   return dispatch => {
     fetch('/places', {
       method: "POST",
@@ -158,3 +158,53 @@ export const editReview = (id, formData, navigate, setErrors) => {
     });
   }
 }
+
+export const deleteReview = (id) => {
+  return dispatch => {
+     fetch(`/reviews/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+      },
+     })
+        .then(resp => {
+          if(resp.ok) {
+            dispatch({
+               type: "DELETE_PLACE_REVIEW",
+               payload: id
+               //   payload: data.id
+            })
+            dispatch({
+               type: "DELETE_USERS_REVIEW",
+               payload: id
+            })
+          }
+
+        })
+        }
+  }
+
+// export const deleteReview = (id) => {
+//   return dispatch => {
+//      fetch(`/reviews/${id}`, {
+//         method: "DELETE",
+//         headers: {
+//           "Accept": "application/json",
+//           "Content-Type": "application/json"
+//       },
+//      })
+//         .then(resp => resp.json())
+//         .then(data => {
+//            dispatch({
+//               type: "DELETE_PLACE_REVIEW",
+//               payload: id
+//               //   payload: data.id
+//            })
+//            dispatch({
+//               type: "DELETE_USERS_REVIEW",
+//               payload: id
+//            })
+//         })
+//   }
+// }

@@ -19,7 +19,7 @@ class BusinessesController < ApplicationController
   private
 
   def business_params
-    params.permit(:image_url, :name, :category)
+    params.permit(:image_url, :name)
   end
 
   def find_business

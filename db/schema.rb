@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_22_031208) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_182331) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "businesses", force: :cascade do |t|
     t.string "image_url"
     t.string "name"
-    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,6 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_031208) do
     t.string "safety_features"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "business_id", null: false
+    t.index ["business_id"], name: "index_places_on_business_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_031208) do
     t.string "password_digest"
   end
 
+  add_foreign_key "places", "businesses"
   add_foreign_key "reviews", "places"
   add_foreign_key "reviews", "users"
 end

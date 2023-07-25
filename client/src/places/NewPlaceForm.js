@@ -1,27 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { clearErrors } from '../redux/actions/errors'
+import { clearErrors, setErrors } from '../redux/actions/errors'
 import { addPlace } from '../redux/actions/places'
 import {Button} from "@material-tailwind/react";
 
 const NewPlaceForm = () => {
+  const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
+  console.log("loggedin NewPlace form", loggedIn)
+  console.log("current user at NewPlaceform", currentUser)
 
   const initialState = {
     name: "",
     location: "",
     description: "",
-    category: "",
     safety_features: "",
-    image_url: ""
+    image_url: "",
+    user_id: currentUser?.id
   }
 
-
-  const { loggedIn } = useSelector(store => store.usersReducer)
   const [ formData, setFormData ] = useState(initialState)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+ // Inside NewPlaceForm component
+
+
+console.log("active route:", window.location.pathname);
+console.log("navigate:", navigate);
 
   useEffect(() => {
     if(!loggedIn) {
@@ -44,20 +50,20 @@ const NewPlaceForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(addPlace(formData, navigate))
+    dispatch(addPlace(formData, navigate, setErrors))
   }
 
   //category dropdown
-  const { places } = useSelector(store => store.placesReducer)
+  // const { places } = useSelector(store => store.placesReducer)
 
 
-  const category_dropdown = places.map( place =>
-    <option 
-      children={place.id} 
-      key={place.id}>
-      {place.category}
-    </option>
-  )  
+  // const category_dropdown = places.map( place =>
+  //   <option 
+  //     children={place.id} 
+  //     key={place.id}>
+  //     {place.category}
+  //   </option>
+  // )  
   //console.log ("categ drop", category_dropdown)
     
   
@@ -142,7 +148,7 @@ const NewPlaceForm = () => {
               value={ formData.category}
               onChange={handleChange}>
                <option> -- select an option -- </option>
-              {category_dropdown}
+              {/* {category_dropdown} */}
             </select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>

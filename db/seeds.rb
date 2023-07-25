@@ -4,11 +4,17 @@ User.destroy_all
 Place.destroy_all
 Business.destroy_all
 
-place1 = Place.create(name: "Chichen Itza", description: "Chichén Itzá is one of Mexico's most important cultural landmarks, famous for its treasure trove of pre-Columbian architecture and artifacts", image_url: "https://www.chichenitza.com/public/assets/img/chichen-itza-02.jpg", category: "Landmark", location: "Yucatan, Mexico", safety_features: "open public space, other solo female travelers")
-place2 = Place.create(name: "Na Nirand Romantic Boutique Resort", description: "A charming hideaway nestled in the heart of Chiang Mai. Legendary stories combined with the history of the Charoenprathet road area, the location of the resort, are the inspiration behind the birth of this beautiful gem. The resort is just 5 minutes away from the Night Bazaar, 15 minutes by car to the Chiang Mai International Airport.", image_url: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/20/5c/f3/photo0jpg.jpg?w=1400&h=-1&s=1", category: "Hotel", location: "Chiang Mai, Thailand", safety_features: "public open space, 24hr security and staff")
-place3 = Place.create(name: "Grand Circle Island and Haleiwa 9 Hour Tour"  , description: "Ideal for first-time visitors, or those with limited time, this full-day tour takes you all around Oahu, making sure that you don't miss a thing. You'll see top attractions including Diamond Head, Hanauma Bay, Halona Blowhole, the Byodo-In Temple and the surfing beaches of the North Shore. Plus, you'll have time to explore Haleiwa town.", image_url: "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/09/94/c0/0d.jpg", category: "Tours", location: "Honolulu, Hawaii, USA", safety_features: "open public space, other solo female travelers")
-place4 = Place.create(name: "Reykjavik Food Walk-Local Foodie Adventure in Iceland", description: "Explore a variety of eateries, including restaurants and food trucks, passing by top landmarks such as Parliament House and Hallgrimskirkja along the way. Tastings may include Icelandic hot dogs, cheeses, homemade ice cream, and lots more.", image_url: "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/fe/66/0a.jpg", category: "Things To Do", location: "101 Reykjavík, Iceland", safety_features: "open public space, other solo female travelers")
-place5 = Place.create(name: "El Compadre", description: "Authentic Mexican food with a great vibe!", image_url: "https://lh3.googleusercontent.com/p/AF1QipND71dwOQ3CSl5Pojh6xDsqPWo_sAoEhgaAxjSv=s1360-w1360-h1020", category: "Restaurant", location: "Los Angeles, CA, USA", safety_features: "open public space, plenty of security, female staff")
+business1 = Business.create(name: "QM Resorts", image_url: "https://qmresorts.com/wp-content/uploads/2021/07/QM-Resorts-New-Logo.jpg")
+business2 = Business.create(name: "Manumission Tour Co.", image_url: "https://static.wixstatic.com/media/11b204_9b16c70550994221b97a68311778de12~mv2.jpg" )
+business3 = Business.create(name: "TWS Restaurant Corporation", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqat8kLozwZzmAWd7-StGZo7W9BL1ZSBrNppCxPi5SRiy2YD3WvyeSHq8ErWyBKqbZPgo&usqp=CAU")
+
+businesses = [business1, business2, business3]
+
+place1 = Place.create(name: "Chichen Itza", description: "Chichén Itzá is one of Mexico's most important cultural landmarks, famous for its treasure trove of pre-Columbian architecture and artifacts", image_url: "https://www.chichenitza.com/public/assets/img/chichen-itza-02.jpg", category: "Landmark", location: "Yucatan, Mexico", safety_features: "open public space, other solo female travelers", business_id: businesses.sample.id)
+place2 = Place.create(name: "Na Nirand Romantic Boutique Resort", description: "A charming hideaway nestled in the heart of Chiang Mai. Legendary stories combined with the history of the Charoenprathet road area, the location of the resort, are the inspiration behind the birth of this beautiful gem. The resort is just 5 minutes away from the Night Bazaar, 15 minutes by car to the Chiang Mai International Airport.", image_url: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/20/5c/f3/photo0jpg.jpg?w=1400&h=-1&s=1", category: "Hotel", location: "Chiang Mai, Thailand", safety_features: "public open space, 24hr security and staff", business_id: businesses.sample.id)
+place3 = Place.create(name: "Grand Circle Island and Haleiwa 9 Hour Tour"  , description: "Ideal for first-time visitors, or those with limited time, this full-day tour takes you all around Oahu, making sure that you don't miss a thing. You'll see top attractions including Diamond Head, Hanauma Bay, Halona Blowhole, the Byodo-In Temple and the surfing beaches of the North Shore. Plus, you'll have time to explore Haleiwa town.", image_url: "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/09/94/c0/0d.jpg", category: "Tours", location: "Honolulu, Hawaii, USA", safety_features: "open public space, other solo female travelers", business_id: businesses.sample.id)
+place4 = Place.create(name: "Reykjavik Food Walk-Local Foodie Adventure in Iceland", description: "Explore a variety of eateries, including restaurants and food trucks, passing by top landmarks such as Parliament House and Hallgrimskirkja along the way. Tastings may include Icelandic hot dogs, cheeses, homemade ice cream, and lots more.", image_url: "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/fe/66/0a.jpg", category: "Tours", location: "101 Reykjavík, Iceland", safety_features: "open public space, other solo female travelers", business_id: businesses.sample.id)
+place5 = Place.create(name: "El Compadre", description: "Authentic Mexican food with a great vibe!", image_url: "https://lh3.googleusercontent.com/p/AF1QipND71dwOQ3CSl5Pojh6xDsqPWo_sAoEhgaAxjSv=s1360-w1360-h1020", category: "Restaurant", location: "Los Angeles, CA, USA", safety_features: "open public space, plenty of security, female staff", business_id: businesses.sample.id)
 
 
 places = [place1, place2, place3, place4, place5]
@@ -23,11 +29,6 @@ user6 = User.create(username: "Eunice6", email: "Eunice@email.com", password: "1
 
 users = [user1, user2, user3, user4, user5, user6]
 
-business1 = Business.create(name: "QM Resorts", image_url: "https://qmresorts.com/wp-content/uploads/2021/07/QM-Resorts-New-Logo.jpg", category: "Hotel" )
-business2 = Business.create(name: "Manumission Tour Co.", image_url: "https://static.wixstatic.com/media/11b204_9b16c70550994221b97a68311778de12~mv2.jpg", category: "Tours" )
-business3 = Business.create(name: "TWS Restaurant Corporation", image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqat8kLozwZzmAWd7-StGZo7W9BL1ZSBrNppCxPi5SRiy2YD3WvyeSHq8ErWyBKqbZPgo&usqp=CAU", category: "Restaurant" )
-
-businesses = [business1, business2, business3]
 
 
 reviews = ["This place exceeded my expectations!",

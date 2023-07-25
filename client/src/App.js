@@ -33,7 +33,6 @@ function App() {
     <Router>
         <Navbars/>
         <Errors/>
-        <Home/>
           <Routes>
             <Route path="/" element= { <Home/>} />
             <Route path="/places" element= { <PlacesContainer/>} />

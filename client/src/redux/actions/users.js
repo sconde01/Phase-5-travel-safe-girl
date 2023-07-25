@@ -19,16 +19,20 @@ export const loadUsers =() => {
       fetch('/show-current-user')
       .then(r => r.json())
       .then(data => {
-        if(!data.errors) {
+        if(data && !data.errors) { // Check if data is valid and no errors
           //dispatch an actiont hat updates the store with the currentUser and logs us in
           const action = {
             type: "LOAD_CURRENT_USER",
             payload: data
           }
           dispatch(action);
-          dispatch(clearErrors)
+          dispatch(clearErrors());
         }
       })
+      .catch(error => {
+        //handle any error that occured during the fetch
+        console.error("error fetching current user:", error);
+      });
     }
   }
 
@@ -40,7 +44,7 @@ export const loadUsers =() => {
           "Accept": "application/json",
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(user, navigate),
+        body: JSON.stringify(user),
       })
       .then((resp) => {
         if (resp.ok) {

@@ -11,7 +11,7 @@ export const placesReducer = (state = initialState, action) => {
     case "LOAD_PLACES":
       return { ...state, places: action.payload };
     case "ADD_PLACE":
-      return addResource(state, action.payload);
+      return {...state, places: action.payload };
     case "ADD_PLACE_REVIEW":
       const { place_id } = action.payload;
 
@@ -37,6 +37,11 @@ export const placesReducer = (state = initialState, action) => {
         ...state,
         places: updatedPlaceReview
       };
+
+    case "DELETE_PLACE_REVIEW":
+      return state.places.filter((review) => review.id !== action.payload);
+    case "DELETE_USER_REVIEW":
+      return state.currentUser.filter((review) => review.id !== action.payload);
 
     default:
       return state;

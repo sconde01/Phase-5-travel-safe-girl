@@ -1,7 +1,8 @@
 // import React, { useState, useEffect } from 'react'
-import { Link  } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useNavigate  } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 // import { clearErrors } from '../redux/actions/errors';
+import { deleteReview } from '../redux/actions/places';
 
 import {
   Card,
@@ -9,11 +10,15 @@ import {
   } from "@material-tailwind/react";  
 
 
-const UserReviews = () => {
+const UserReviews = ({review}) => {
   const { currentUser } = useSelector(store => store.usersReducer)
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleDelete = () => {
-    // dispatch()
+    //debugger
+    dispatch(deleteReview(review.id))
   };
 
   const user_reviews = currentUser?.reviews?.map(review =>
@@ -27,12 +32,12 @@ const UserReviews = () => {
       <p> Safe: { String(review.safe) } </p>
       <p>Budget Friendly: { String(review.budget_friendly) }</p>
       <i>Written: {new Date(Date.parse(review.created_at)).toLocaleDateString('en-US')}</i>
+      
       {/* This link routes user to edit form */}
-      <Link to={`/reviews/${review.id}/edit`} style={{float: 'right'}}> Edit </Link> 
-        <br/>  
-      {/* <Link to="#" onClick= {() => {handleDelete(review)}}>Delete</Link> */}
-        {/* <button onClick={handleDelete}>Delete</button> */}
-        <Button sx={{ width: 50, paddingRight: 2, fontFamily: 'Google Sans, Roboto, arial, sans-serif' }} color='lightsage' size='small' variant="text" onClick={handleDelete} type='delete'>remove</Button>
+     <Button sx={{ width: 50, paddingRight: 2, fontFamily: 'Google Sans, Roboto, arial, sans-serif' }} color='orange' size='md' variant="text" type='edit' 
+     onClick={() => navigate(`/reviews/${review.id}/edit`)}>edit</Button>
+        <br/>      
+      <Button sx={{ width: 50, paddingRight: 2, fontFamily: 'Google Sans, Roboto, arial, sans-serif' }} color='orange' size='md' variant="text" onClick={handleDelete} type='delete'>remove</Button>
     </Card>
     </div>
     )
@@ -40,8 +45,9 @@ const UserReviews = () => {
 
   return (
     <>
-    
-   {user_reviews}
+    {/* {review && ( 
+      )} */}
+      {user_reviews}
    
      </>
   )

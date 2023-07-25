@@ -1,3 +1,3 @@
 class BusinessSerializer < ActiveModel::Serializer
-  attributes :id, :image_url, :name, :category
+  attributes :id, :image_url, :name
 end

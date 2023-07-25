@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
-const Login = ({loading}) => {
+const Login = () => {
   const { loggedIn } = useSelector(store => store.usersReducer);
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -22,7 +22,7 @@ const Login = ({loading}) => {
 
   useEffect(() => {
     // code here is what happens on mount
-    if(!loading && loggedIn) {
+    if(loggedIn) {
       navigate('/places')
     }
     return () => {
@@ -30,7 +30,7 @@ const Login = ({loading}) => {
       dispatch(clearErrors())
       // dispatch({ type: "CLEAR_ERRORS" }) send it to the reducer
     }
-  }, [loading, loggedIn, navigate, dispatch, setErrors])
+  }, [loggedIn, navigate, dispatch, setErrors])
 
   const handleSubmit = e => {
     e.preventDefault();

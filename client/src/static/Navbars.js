@@ -1,17 +1,22 @@
-import { Link } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../redux/actions/users';
-
 import {
   Navbar,
-  Collapse,
-  Typography,
-  IconButton,
-} from "@material-tailwind/react";
-
+   Typography,
+  Button,
+  } from "@material-tailwind/react";
+// import "@material-tailwind/react/tailwind.css";
+import {
+  UserCircleIcon
+} from "@heroicons/react/24/outline";
 
 const Navbars = () => {
+  const [openNav, setOpenNav] = React.useState(false);
   const { loggedIn, currentUser } = useSelector(store => store.usersReducer) 
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogoutClick = () => {
@@ -20,137 +25,107 @@ const Navbars = () => {
     dispatch(logoutUser());
   }
 
-  const NavBarLoggedIn = () => {
-    return (
-      
-      <Navbar className="mx-auto max-w-screen-xl px-6 py-3" color="blue-gray">
-          <Link to="/places/new">Add a Place</Link>
-          {/* <Link to="/user/food_trucks">My Food Trucks</Link> */}
-         
-      
-          
-            <li><b>Signed in as:</b> <Link to="/places/user-reviews">{currentUser.username}</Link></li>
-        
-       
-          <Link href="#" onClick={handleLogoutClick}>Sign Out</Link>
-          </Navbar>
-    
-    )
-  }
-
-  const NavBarLoggedOut = () => {
-    return (
-<>
-      <p> <Link to="/login">Login</Link></p>
-      <p><Link to="/signup">Signup</Link></p>
-      </>
-    )
-  }
+  React.useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false)
+    );
+  }, []);
+ 
+  const navListLoggedIn = () => (
+    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <a href="/places" className="flex items-center">
+          Places
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <a href="/places/new" className="flex items-center">
+          Add a Place
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <a href="/places/user-reviews" className="flex items-center">
+          <UserCircleIcon className="h-[18px] w-[18px]" />
+          Account: {currentUser.username}
+        </a>
+      </Typography>
+      <Button
+        variant="gradient"
+        size="sm"
+        className="hidden lg:inline-block"
+        onClick={handleLogoutClick} 
+      >
+        <span>Sign Out</span>
+      </Button>
+    </ul>
+  )
+  const navListLoggedOut = () => (
+    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <a href="/places" className="flex items-center">
+          Places
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <a href="/login" className="flex items-center">
+          <UserCircleIcon className="h-[18px] w-[18px]" />
+          Log In
+        </a>
+      </Typography>
+      <Button
+        variant="gradient"
+        size="sm"
+        className="hidden lg:inline-block"
+        onClick={() => navigate("/signup")}
+      >
+        <span>Sign Up</span>
+      </Button>
+    </ul>
+  )
 
   return (
-    <>
-    <Navbar className="mx-auto max-w-screen-xl px-6 py-3" color="blue-gray">
+    <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
+      <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+    <Typography
+          as="a"
+          href="/"
+          className="mr-4 cursor-pointer py-1.5 font-medium"
+        >
+          Home Page
+        </Typography>
 
-      <Link to="/places">Places</Link>
-        <div>
-        { loggedIn ? NavBarLoggedIn() : NavBarLoggedOut() }
-        </div>
-    </Navbar>
-  </>
-  )
-}
-
+      { loggedIn ? navListLoggedIn() : navListLoggedOut() }
+      </div>
+      </Navbar>
+      
+      );
+    }
+  
 export default Navbars;
 
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { logoutUser } from '../redux/actions/users';
-// import {
-//   Navbar,
-//   NavItem,
-//   Dropdown,
-//   DropdownItem,
-// } from "@material-tailwind/react";
-
-// const Navbars = () => {
-//   const { loggedIn, currentUser } = useSelector(store => store.usersReducer);
-//   const dispatch = useDispatch();
-//   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-//   const handleLogoutClick = () => {
-//     fetch('/logout', { method: "DELETE" });
-//     dispatch(logoutUser());
-//   }
-
-//   const toggleDropdown = () => {
-//     setDropdownOpen(!dropdownOpen);
-//   }
-
-//   const NavBarLoggedIn = () => {
-//     return (
-//       <Dropdown
-//         color="lightBlue"
-//         placement="bottom-start"
-//         open={dropdownOpen}
-//         toggle={toggleDropdown}
-//       >
-//         <button className="p-4 text-gray-700">
-//           {currentUser.username}
-//         </button>
-//         <DropdownItem>
-//           <Link to="/places/new">Add a Place</Link>
-//         </DropdownItem>
-//         {/* <DropdownItem>
-//           <Link to="/user/food_trucks">My Food Trucks</Link>
-//         </DropdownItem> */}
-//         <DropdownItem>
-//           <Link to="/places/user-reviews">User Reviews</Link>
-//         </DropdownItem>
-//         <DropdownItem onClick={handleLogoutClick}>
-//           Sign Out
-//         </DropdownItem>
-//       </Dropdown>
-//     )
-//   }
-
-//   const NavBarLoggedOut = () => {
-//     return (
-//       <Navbar.Nav className="flex">
-//         <NavItem>
-//           <Link to="/login">Login</Link>
-//         </NavItem>
-//         <NavItem>
-//           <Link to="/signup">Signup</Link>
-//         </NavItem>
-//       </Navbar.Nav>
-//     )
-//   }
-
-//   return (
-//     <Navbar color="lightBlue">
-//       <Navbar.Container>
-//         <Link to="/">
-//           {/* Add your logo or icon here */}
-//           <img
-//             src="/logo.png"
-//             alt="Logo"
-//             height="30"
-//             className="inline-block align-middle mr-2"
-//           />
-//           <span className="text-lg font-bold">Travel App</span>
-//         </Link>
-//       </Navbar.Container>
-//       <Navbar.Container position="right">
-//         <ul className="flex items-center">
-//           <NavItem>
-//             <Link to="/places">Places</Link>
-//           </NavItem>
-//           {loggedIn ? NavBarLoggedIn() : NavBarLoggedOut()}
-//         </ul>
-//       </Navbar.Container>
-//     </Navbar>
-//   )
-// }
-
-// export default Navbars;
