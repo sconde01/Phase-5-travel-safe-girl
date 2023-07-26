@@ -1,5 +1,6 @@
 class BusinessesController < ApplicationController
   skip_before_action :authorize, only: [:index, :show]
+  before_action :find_business, only: [:show]
 
   def index
     render json: Business.all
@@ -11,10 +12,10 @@ class BusinessesController < ApplicationController
   end
 
   # POST /businesses/:id
-  def create
-    business = current_user.businesses.create!(business_params)
-    render json: business, status: :created
-  end
+  # def create
+  #   business = current_user.businesses.create!(business_params)
+  #   render json: business, status: :created
+  # end
 
   private
 
@@ -24,7 +25,8 @@ class BusinessesController < ApplicationController
 
   def find_business
     @business = Business.find_by(id: params[:id])
-    # byebug
+     # Remember that you can add additional logic here, for example, if the business is not found, you can handle it accordingly
+     render json: { errors: ["Business not found"] }, status: :not_found unless @business
   end
 
 

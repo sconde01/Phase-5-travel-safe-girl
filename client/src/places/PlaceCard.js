@@ -8,17 +8,13 @@ import {
   Typography,
   Button
 } from "@material-tailwind/react";
-// import { deleteBlog } from '../actions/blogs';
 
 const PlaceCard = ({place}) => {
   const navigate = useNavigate();
-  const currentUser = useSelector(store => store.usersReducer.currentUser);
+  // const currentUser = useSelector(store => store.usersReducer.currentUser);
 
-  const dispatch = useDispatch()
 
-  const handleDelete = () => {
-    dispatch()
-  }
+
 
   return (
     // <div class="grid grid-cols-1 md:grid-cols-6">

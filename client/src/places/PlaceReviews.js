@@ -20,7 +20,7 @@ const PlaceReviews = () => {
 
   const place = places.find(place => place.id === id);
 
-  const show_reviews = place.reviews?.map(review =>
+  const show_reviews = place?.reviews?.map(review =>
     <Card color="blue-gray" >
     <div key={review.id} >
       <h6>{ review.username }:</h6>
@@ -55,36 +55,40 @@ const PlaceReviews = () => {
     <div>
     <Card className="mt-8 w-100 place-content-center">
     <CardHeader color="blue-gray" className="relative h-50">
-      <img src={ place.image_url }alt="img-blur-shadow" layout="fill" />
+      <img src={ place?.image_url }alt="img-blur-shadow" layout="fill" />
     </CardHeader>
     <CardBody>
       <Typography variant="h5" color="blue-gray" className="mb-2">
-      { place.name }
+      { place?.name }
       </Typography>
       <Typography>
-      { place.description }
+      { place?.description }
       </Typography>
       <br/>
       <Typography> Location: &nbsp;
-      { place.location }
+      { place?.location }
       </Typography>
       <Typography> Category: &nbsp;
-      { place.category }
+      { place?.category }
       </Typography>
       <Typography> Safety-features: &nbsp;
-      { place.safety_features }
+      { place?.safety_features }
+      </Typography>
+      <Typography> Business: &nbsp;
+      <Link to={(`/business/${id}`)}> { place?.business.name }</Link>
       </Typography>
     </CardBody>
     <CardFooter className="pt-1 space-y-6" >
       { show_reviews }
      </CardFooter>
-  </Card>
     <Button className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3" >
       { loggedIn ? (
         <Link to={(`/places/${place.id}/new-review`)}>Add a Review</Link>) : (
         <Link to="/login">Log in to add a Review</Link>)
       }
     </Button>
+     &nbsp;
+  </Card>
      </div>
   )
 }

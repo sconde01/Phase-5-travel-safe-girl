@@ -15,6 +15,10 @@ import { loadCurrentUser, loadUsers } from "./redux/actions/users";
 import NewReview from "./reviews/NewReview";
 import UserReviews from "./users/UserReviews";
 import EditReview from "./reviews/EditReview";
+import BusinessPage from "./businesses/BusinessPage";
+import { loadBusinesses } from "./redux/actions/businesses";
+import BusinessList from "./businesses/BusinessList";
+import Footer from "./static/Footer";
 
 function App() {
   // const reduxState = useSelector((store) => store );
@@ -26,6 +30,7 @@ function App() {
     dispatch(loadPlaces())
     dispatch(loadUsers())
     dispatch(loadCurrentUser())
+    dispatch(loadBusinesses())
   }, [dispatch])
 
   return (
@@ -41,9 +46,12 @@ function App() {
             <Route path="/places/new" element= { <NewPlaceForm/>} />
             <Route path="/places/user-reviews" element= { <UserReviews/>} />
             <Route path="/reviews/:id/edit" element= { <EditReview/>} />
+            <Route path="/businesses" element= { <BusinessList/>} />
+            <Route path="/businesses/:id" element= { <BusinessPage/>} />
             <Route path="/login" element= { <Login/>} />
             <Route path="/signup" element= { <Signup/>} />
           </Routes>
+          <Footer/>
   </Router>
   )
 

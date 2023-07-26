@@ -159,6 +159,7 @@ export const editReview = (id, formData, navigate, setErrors) => {
   }
 }
 
+//delete is NOT WORKING
 export const deleteReview = (id) => {
   return dispatch => {
      fetch(`/reviews/${id}`, {
@@ -173,7 +174,6 @@ export const deleteReview = (id) => {
             dispatch({
                type: "DELETE_PLACE_REVIEW",
                payload: id
-               //   payload: data.id
             })
             dispatch({
                type: "DELETE_USERS_REVIEW",

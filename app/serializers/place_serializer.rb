@@ -2,6 +2,7 @@ class PlaceSerializer < ActiveModel::Serializer
   attributes :id, :image_url, :name, :location, :description, :category,  :safety_features, :reviews
 
   has_many :users
+  belongs_to :business
 
   def reviews
     object.reviews.map do |review|

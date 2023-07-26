@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import PlaceCard from './PlaceCard';
 
-const PlacesContainer = ({loading}) => {
+const PlacesContainer = () => {
 
   const navigate = useNavigate();
   // const { loggedIn } = useSelector(store => store.usersReducer);
