@@ -14,15 +14,18 @@ const NewReview = () => {
   
   console.log("currentUser", currentUser)
 
+  // const user_id = currentUser?.id;
   const placeId = place ? place.id : null;
 
+  // console.log ("user_id", user_id)
+  // console.log("placeId", placeId)
   const initialState = {
     title: "",
     body: "",
     safe: "",
     budget_friendly: "",
-    place_id: placeId,
-    user_id: currentUser?.id
+    place_id: placeId
+    // user_id: user.id
   }
   
   const [ formData, setFormData ] = useState(initialState)

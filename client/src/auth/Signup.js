@@ -8,7 +8,8 @@ import {
   Button,
   Card,
   Typography,
-  Input
+  Input,
+  CardBody
 } from "@material-tailwind/react";
 
 const Signup = () => {
@@ -39,17 +40,21 @@ const Signup = () => {
 
 
   return (
+    <>
+    <br/>
+    <div className="grid place-content-center h-screen bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600">
     <Card className="place-content-center" color="transparent" >
-      <Typography className="place-content-center" variant="h4" color="blue-gray">
+      <CardBody>
+      <Typography className="place-content-center" variant="h4" color="white">
         SIGN UP
       </Typography>
-      <Typography color="gray" className="mt-1 font-normal">
+      <Typography color="white" className="mt-1 font-normal">
         Enter your info.
-      </Typography>
+      </Typography >
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={ handleSubmit }>
         <div className="mb-4 flex flex-col gap-6">
           <Input 
-            
+            style={{ color: "white" }}
             label="Email"
             type="text" 
             name="email" 
@@ -60,6 +65,7 @@ const Signup = () => {
              />
           <Input 
             size="lg" 
+            style={{ color: "white" }}
             label="Username"
             type="text" 
             name="username" 
@@ -69,7 +75,8 @@ const Signup = () => {
             required={true}      
              />
           <Input 
-            size="lg" 
+            size="lg"
+            style={{ color: "white" }}
             label="Password" 
             type="password" 
             name="password" 
@@ -84,8 +91,11 @@ const Signup = () => {
           Sign Up
         </Button>
       </form>
+      </CardBody>
     </Card>
-
+    </div>
+    <br/>
+    </>
   )
 }
 

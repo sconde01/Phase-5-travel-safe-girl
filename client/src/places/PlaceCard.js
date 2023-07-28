@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   Typography,
@@ -17,12 +16,11 @@ const PlaceCard = ({place}) => {
 
 
   return (
-    // <div class="grid grid-cols-1 md:grid-cols-6">
-  <Card className="mt-8 w-96">
-      <CardHeader color="blue-gray" className="relative h-50">
-        <img src={ place.image_url }alt="img-blur-shadow" layout="fill" />
-      </CardHeader>
+    <div className='px-7'>
+    <br/>
+    <Card className="w-full max-w-[26rem] shadow-lg">
       <CardBody>
+      <img src={ place.image_url }alt="img-blur-shadow" layout="fill" />
         <Typography variant="h5" color="blue-gray" className="mb-2">
         { place.name }
         </Typography>
@@ -41,19 +39,13 @@ const PlaceCard = ({place}) => {
         </Typography>
       </CardBody>
       <CardFooter className="pt-0">
-      <Button onClick={() => navigate(`/places/${place.id}`)}>Reviews</Button>
+      <Button sx={{ width: 50, paddingRight: 2, fontFamily: 'Google Sans, Roboto, arial, sans-serif' }} color='orange' size='lg' variant="outlined"
+      onClick={() => navigate(`/places/${place.id}`)}>See Reviews</Button>
        </CardFooter>
     </Card>
-//  </div>
-    // <div>PlaceCard
-    //   <hr />
-    //   <h4><Link to={`/places/${ place.id }`}>{ place.name }</Link></h4>
-    //   <p>{ place.description }</p>
-    //   {/* {currentUser && currentUser.id === place.review.id ? <>
-    //     <button onClick={() => navigate(`/blogs/${ blog.id }/edit`)}>Edit</button>
-    //     <button onClick={handleDelete}>Delete</button>
-    //   </> : null} */}
-    // </div>
+    <br/>
+   </div>
+
   )
 }
 

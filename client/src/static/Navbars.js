@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../redux/actions/users';
 import {
@@ -40,11 +40,9 @@ const Navbars = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/places" className="flex items-center">
-          Places
-        </a>
+        <Link to = '/places' className="flex items-center"> PLaces </Link>
       </Typography>
-      <Typography
+      {/* <Typography
         as="li"
         variant="small"
         color="blue-gray"
@@ -53,17 +51,16 @@ const Navbars = () => {
         <a href="/places/new" className="flex items-center">
           Add a Place
         </a>
-      </Typography>
+      </Typography> */}
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/places/user-reviews" className="flex items-center">
+        <Link to ="/places/user-reviews" className="h-[18px] w-[18px]" >
           <UserCircleIcon className="h-[18px] w-[18px]" />
-          Account: {currentUser.username}
-        </a>
+          Account: {currentUser.username} </Link>
       </Typography>
       <Button
         variant="gradient"
@@ -83,9 +80,7 @@ const Navbars = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/places" className="flex items-center">
-          Places
-        </a>
+        <Link  to = "/places"className="flex items-center" > Places </Link>
       </Typography>
       <Typography
         as="li"
@@ -93,10 +88,10 @@ const Navbars = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/login" className="flex items-center">
-          <UserCircleIcon className="h-[18px] w-[18px]" />
-          Log In
-        </a>
+        <Link  to= "/login" className="flex items-center" > 
+        <UserCircleIcon className="h-[18px] w-[18px]" /> Log In
+        </Link>
+       
       </Typography>
       <Button
         variant="gradient"

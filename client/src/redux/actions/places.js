@@ -1,7 +1,5 @@
 // import { useDispatch } from "react-redux"
 
-import { setErrors } from "./errors"
-
 export const loadPlaces = () => {
   //thunk middleware usees these actions to make asynchronous calls 
   //it expects a function to be returned
@@ -80,7 +78,7 @@ export const addReview = (formData, navigate, setErrors, place_id) => {
         }
         dispatch(action);
         console.log(action.payload, "payload")
-        navigate('/places');
+        navigate('/places/user-reviews');
     } 
     });
   }
@@ -159,7 +157,6 @@ export const editReview = (id, formData, navigate, setErrors) => {
   }
 }
 
-//delete is NOT WORKING
 export const deleteReview = (id) => {
   return dispatch => {
      fetch(`/reviews/${id}`, {

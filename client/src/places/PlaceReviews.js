@@ -19,10 +19,11 @@ const PlaceReviews = () => {
   const id = parseInt(useParams().id);
 
   const place = places.find(place => place.id === id);
+  console.log ("place at reviews", place)
 
   const show_reviews = place?.reviews?.map(review =>
     <Card color="blue-gray" >
-    <div key={review.id} >
+    <div key={review.id}>
       <h6>{ review.username }:</h6>
       <h2>{ review.review_title }</h2>
       <p>{ review.review_body }</p>
@@ -75,7 +76,7 @@ const PlaceReviews = () => {
       { place?.safety_features }
       </Typography>
       <Typography> Business: &nbsp;
-      <Link to={(`/business/${id}`)}> { place?.business.name }</Link>
+      <Link to={(`/businesses/${id}`)}> { place?.business.name }</Link>
       </Typography>
     </CardBody>
     <CardFooter className="pt-1 space-y-6" >

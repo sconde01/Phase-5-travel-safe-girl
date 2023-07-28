@@ -10,13 +10,14 @@ const EditReview = () => {
   // const  { places }  = useSelector(store => store.placesReducer)
   const id = parseInt(useParams().id);
   
-  const review = currentUser?.reviews?.find(review => review.id === id);
+  const review = currentUser.reviews?.find(review => review.id === id);
   
   console.log("currentUser", currentUser)
   console.log("review at editreview",review)
 
+  
   // const placeId = place ? place.id : null;
-
+  
   const initialState = {
     title: review.review_title,
     body: review.review_body,
@@ -28,8 +29,8 @@ const EditReview = () => {
   
   const [ formData, setFormData ] = useState(initialState)
   
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const handleChange = e => {
     const {name, value} = e.target;
@@ -47,13 +48,14 @@ const EditReview = () => {
 
   
   return (
-    <div>
+    
+       <div className="h-172 bg-gradient-to-r from-purple-600 to-blue-600">
      <h1><center>EDIT Review
       <br/>
       <b>{ review.place_name }!</b></center></h1> 
-    <center><img src={ review.place_image }alt="img-blur-shadow"  className='contain' /></center>
+    <center><img src={ review.place_image }alt="img-blur-shadow"  className='height: 100%; width: 100%; object-fit: contain' /></center>
     
-    <form className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3" onSubmit={handleSubmit}>
+    <form className="mt-5 ml-7 mr-7 w-90 place-content-center px-3" onSubmit={handleSubmit}>
     <div className="flex flex-wrap -mx-3 mb-6">
       <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
@@ -125,7 +127,10 @@ const EditReview = () => {
         </div>
       </div>
       </div>
+      
       <Button className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3" type="submit" value="Add Place" > UPDATE Review</Button>
+      &nbsp;
+      <br/>
 </form>
   </div>
   )

@@ -35,11 +35,37 @@ const usersReducer = (state= initialState, action) => {
         users: [...state.users, action.payload]
       }
     case "EDIT_USER_REVIEW":
-      const updatedReview = state.reviews.map(review => review.id === action.payload.id ? action.payload : review);
+         //console.log("action p", action.payload)
+        //  const place = state.places.find(place => place.id === action.payload.place.id );
+        //  const updatedReviews = place.reviews.map(review => review.id === action.payload.id ? action.payload : review);
+        //  const updatedPlace = { 
+        //    ...place,
+        //    reviews: updatedReviews
+        //  }
+        //  const updatedPlaceReview = state.places.map(place => place.id === updatedPlace.id ? updatedPlace : place);
+        //  return {
+        //    ...state,
+        //    places: updatedPlaceReview
+        //  };
+      
+      const user = state.users.find(user => user.id === action.payload.user.id )
+      const updatedReview = user.reviews.map(review => review.id === action.payload.id ? action.payload : review);
+      const updatedUser = {
+        ...user,
+        reviews: updatedReview
+      }
+      const updatedUserReview = state.users.map(user => user.id === updatedUser.id ? updatedUser : user);
       return {
         ...state,
-        reviews: updatedReview
+        reviews: updatedUserReview
       };
+
+      case "DELETE_USER_REVIEW":
+        return {
+          ...state,
+          reviews: state.reviews.filter((review) => review.id !== action.payload)
+        }
+    
     case "LOGOUT_USER":
       return {
         ...state,

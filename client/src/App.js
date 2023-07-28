@@ -15,9 +15,9 @@ import { loadCurrentUser, loadUsers } from "./redux/actions/users";
 import NewReview from "./reviews/NewReview";
 import UserReviews from "./users/UserReviews";
 import EditReview from "./reviews/EditReview";
+import BusinessContainer from "./businesses/BusinessContainer";
 import BusinessPage from "./businesses/BusinessPage";
 import { loadBusinesses } from "./redux/actions/businesses";
-import BusinessList from "./businesses/BusinessList";
 import Footer from "./static/Footer";
 
 function App() {
@@ -43,10 +43,10 @@ function App() {
             <Route path="/places" element= { <PlacesContainer/>} />
             <Route path="/places/:id" element= { <PlaceReviews/>} />
             <Route path="/places/:id/new-review" element= { <NewReview/>} />
-            <Route path="/places/new" element= { <NewPlaceForm/>} />
+            {/* <Route path="/places/new" element= { <NewPlaceForm/>} /> */}
             <Route path="/places/user-reviews" element= { <UserReviews/>} />
             <Route path="/reviews/:id/edit" element= { <EditReview/>} />
-            <Route path="/businesses" element= { <BusinessList/>} />
+            <Route path="/businesses" element= { <BusinessContainer/>} />
             <Route path="/businesses/:id" element= { <BusinessPage/>} />
             <Route path="/login" element= { <Login/>} />
             <Route path="/signup" element= { <Signup/>} />

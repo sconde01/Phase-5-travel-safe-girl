@@ -10,32 +10,71 @@ import {
 
 function Home() {
   return (
+    <div className="h-172 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600">
+
     <div className="mx-auto max-w-screen-md py-12">
     <Card className="mb-12 overflow-hidden">
       <img
         alt="nature"
         className="h-[32rem] w-full object-cover object-center"
-        src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2717&q=80"
+        src="https://i.pinimg.com/564x/83/ec/da/83ecda59f7fccf9e2dc605c1740d9c1e.jpg"
       />
     </Card>
-    <Typography variant="h2" color="blue-gray" className="mb-2">
-      What is Material Tailwind
+    <Typography variant="h2" color="white" className="mb-2">
+      Travel Safe, Girl!
     </Typography>
-    <Typography color="gray" className="font-normal">
-      Can you help me out? you will get a lot of free exposure doing this
-      can my website be in english?. There is too much white space do less
-      with more, so that will be a conversation piece can you rework to make
-      the pizza look more delicious other agencies charge much lesser can
-      you make the blue bluer?. I think we need to start from scratch can my
-      website be in english?, yet make it sexy i&apos;ll pay you in a week
-      we don&apos;t need to pay upfront i hope you understand can you make
-      it stand out more?. Make the font bigger can you help me out? you will
-      get a lot of free exposure doing this that&apos;s going to be a chunk
-      of change other agencies charge much lesser. Are you busy this
-      weekend? I have a new project with a tight deadline that&apos;s going
-      to be a chunk of change. There are more projects lined up charge extra
-      the next time.
+    <Typography color="white" className="font-sans font-bold text-xl">
+      See what other girlies are saying about the top experiences in the world!!
     </Typography>
+     &nbsp;
+    <Typography color="white" className="font-sans font-bold text-xl">
+      Whether you are traveling alone or with your girl group! Check it out and make sure it is SAFE!
+    </Typography>
+  </div>
+
+  <div className="flex flex-wrap grid-cols-4 gap-10 justify-center">
+  <img
+      className="h-96 w-96 rounded-full object-cover object-center"
+      src="https://i.pinimg.com/564x/9f/6e/0a/9f6e0ad6e004c95e17f0e8072a892636.jpg"
+      alt="nature image"
+    />
+  <img
+      className="h-96 w-96 rounded-full object-cover object-center"
+      src="https://i.pinimg.com/564x/16/43/b3/1643b30a57089e9dc69508ea0945226a.jpg"
+      alt="girl traveling"
+    />
+  <img
+      className="h-96 w-96 rounded-full object-cover object-center"
+      src="https://i.pinimg.com/564x/17/30/4d/17304d64175c47f4b65293c2b58ec0b1.jpg"
+      alt="nature image"
+    />
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div className="flex items-center justify-center">
+            <div className="flex border border-purple-200 rounded">
+                <input
+                    type="text"
+                    className="block w-full px-24 py-3 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    placeholder="Search..."
+                />
+                <button className="px-4 text-white bg-purple-600 border-l rounded ">
+                    Search
+                </button>
+            </div>
+        </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+
+
+
+
+
   </div>
 )}
 
