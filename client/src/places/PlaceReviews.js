@@ -22,17 +22,25 @@ const PlaceReviews = () => {
   console.log ("place at reviews", place)
 
   const show_reviews = place?.reviews?.map(review =>
-    <Card color="blue-gray" >
-    <div key={review.id}>
-      <h6>{ review.username }:</h6>
-      <h2>{ review.review_title }</h2>
-      <p>{ review.review_body }</p>
+      
+    <div class="border-double border-4 border-indigo-600">
+    <div key={review.id} className ="pl-8">
+      <h6 className="italic">user: { review.username }</h6>
+      <br/>
+      <h1 className="font-bold">{ review.title }</h1>
+      <br/>
+      <p><i>Review:</i></p>
+      <p>{ review.body }</p>
       <br/>
       <p> Safe: { String(review.safe) } </p>
+      <br/>
       <p>Budget Friendly: { String(review.budget_friendly) }</p>
+      <br/>
       <i>Written: {new Date(Date.parse(review.created_at)).toLocaleDateString('en-US')}</i>
     </div>
-    </Card>
+    </div>
+
+ 
     )
 
 
@@ -53,12 +61,13 @@ const PlaceReviews = () => {
   
  
   return (
-    <div>
-    <Card className="mt-8 w-100 place-content-center">
-    <CardHeader color="blue-gray" className="relative h-50">
-      <img src={ place?.image_url }alt="img-blur-shadow" layout="fill" />
-    </CardHeader>
+    <div className ="h-200 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600">
+      <div className ="flex items-center justify-center ">
+      <br/>
+      <br/>
+    <Card className="shadow-lg">
     <CardBody>
+      <img src={ place?.image_url }alt="img-blur-shadow" layout="fill" />
       <Typography variant="h5" color="blue-gray" className="mb-2">
       { place?.name }
       </Typography>
@@ -90,6 +99,10 @@ const PlaceReviews = () => {
     </Button>
      &nbsp;
   </Card>
+     &nbsp;
+     &nbsp;
+     <br/>
+     </div>
      </div>
   )
 }

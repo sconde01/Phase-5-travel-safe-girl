@@ -1,5 +1,7 @@
 // import errorsReducer from "./errorsReducer";
 
+import { updateResource } from "../../Globals"
+
 const initialState = {
   users: [],
   currentUser: null,
@@ -34,35 +36,36 @@ const usersReducer = (state= initialState, action) => {
         ...state,
         users: [...state.users, action.payload]
       }
-    case "EDIT_USER_REVIEW":
-         //console.log("action p", action.payload)
-        //  const place = state.places.find(place => place.id === action.payload.place.id );
-        //  const updatedReviews = place.reviews.map(review => review.id === action.payload.id ? action.payload : review);
-        //  const updatedPlace = { 
-        //    ...place,
-        //    reviews: updatedReviews
-        //  }
-        //  const updatedPlaceReview = state.places.map(place => place.id === updatedPlace.id ? updatedPlace : place);
-        //  return {
-        //    ...state,
-        //    places: updatedPlaceReview
-        //  };
+
       
-      const user = state.users.find(user => user.id === action.payload.user.id )
-      const updatedReview = user.reviews.map(review => review.id === action.payload.id ? action.payload : review);
+    case "EDIT_USER_REVIEW":
+      console.log("actin.payload", action.payload)
+      // const cUser = state.currentUser.id === action.payload.user.id ;
+      // console.log("user", cUser)
+      const updatedReview = state.currentUser.reviews.map(review => review.id === action.payload.id ? action.payload : review);
+      
+      console.log ("updatedReview",updatedReview)
+
       const updatedUser = {
-        ...user,
+        ...state.currentUser,
         reviews: updatedReview
       }
-      const updatedUserReview = state.users.map(user => user.id === updatedUser.id ? updatedUser : user);
+
+      console.log("udpatedUser", updatedUser)
+
+
+      // const updatedUserReview = state.currentUser.review === updatedUser ? updatedUser : state.currentUser.review;
+      
+      // console.log("updatedUserReview", updatedUserReview)
+      
       return {
         ...state,
-        reviews: updatedUserReview
+        reviews: updatedUser
       };
 
       case "DELETE_USER_REVIEW":
         return {
-          ...state,
+          ...state.currentUser,
           reviews: state.reviews.filter((review) => review.id !== action.payload)
         }
     
@@ -79,47 +82,4 @@ const usersReducer = (state= initialState, action) => {
 
 export default usersReducer;
 
-// const initialState = {
-//   users: [],
-//   currentUser: { reviews: [] }, // Initialize reviews as an empty array
-//   loggedIn: false,
-// };
-
-// const usersReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case "LOAD_USERS":
-//       // update our users state with the action.payload which points to our data
-//       return {
-//         ...state,
-//         users: action.payload,
-//       };
-//     case "LOGIN_USER":
-//       return {
-//         ...state,
-//         currentUser: { ...action.payload, reviews: [] }, // Initialize reviews as an empty array when logging in
-//         loggedIn: true,
-//       };
-//     case "LOAD_CURRENT_USER":
-//       return {
-//         ...state,
-//         currentUser: { ...action.payload, reviews: [] }, // Initialize reviews as an empty array when loading the current user
-//         loggedIn: true,
-//       };
-//     case "ADD_USER":
-//       return {
-//         ...state,
-//         users: [...state.users, action.payload],
-//       };
-//     case "LOGOUT_USER":
-//       return {
-//         ...state,
-//         currentUser: initialState.currentUser, // Reset currentUser to its initial state on logout
-//         loggedIn: false,
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
-// export default usersReducer;
 

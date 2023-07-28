@@ -10,7 +10,7 @@ const EditReview = () => {
   // const  { places }  = useSelector(store => store.placesReducer)
   const id = parseInt(useParams().id);
   
-  const review = currentUser.reviews?.find(review => review.id === id);
+  const review = currentUser?.reviews?.find(review => review.id === id);
   
   console.log("currentUser", currentUser)
   console.log("review at editreview",review)
@@ -19,12 +19,12 @@ const EditReview = () => {
   // const placeId = place ? place.id : null;
   
   const initialState = {
-    title: review.review_title,
-    body: review.review_body,
+    title: review.title,
+    body: review.body,
     safe: review.safe,
     budget_friendly: review.budget_friendly,
     // place_id: placeId,
-    // user_id: currentUser?.id
+    user_id: currentUser?.id
   }
   
   const [ formData, setFormData ] = useState(initialState)
@@ -43,6 +43,7 @@ const EditReview = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    //debugger
     dispatch(editReview(id, formData, navigate, setErrors))
   }
 
@@ -127,7 +128,7 @@ const EditReview = () => {
         </div>
       </div>
       </div>
-      
+
       <Button className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3" type="submit" value="Add Place" > UPDATE Review</Button>
       &nbsp;
       <br/>

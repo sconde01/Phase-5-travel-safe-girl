@@ -41,6 +41,9 @@ const PlaceCard = ({place}) => {
       <CardFooter className="pt-0">
       <Button sx={{ width: 50, paddingRight: 2, fontFamily: 'Google Sans, Roboto, arial, sans-serif' }} color='orange' size='lg' variant="outlined"
       onClick={() => navigate(`/places/${place.id}`)}>See Reviews</Button>
+      &nbsp;
+      <Button sx={{ width: 50, paddingRight: 2, fontFamily: 'Google Sans, Roboto, arial, sans-serif' }} color='orange' size='lg' variant="outlined"
+      onClick={() => navigate(`/places/${place.id}/new-review`)}>Add Review</Button>
        </CardFooter>
     </Card>
     <br/>

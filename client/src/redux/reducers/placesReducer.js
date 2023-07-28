@@ -39,16 +39,13 @@ export const placesReducer = (state = initialState, action) => {
       // const updatedUser = state.users.map(user => user.id === userForAdd.id ? {...user, reviews: addToCurrentUser} : user);
       // console.log("udpatedUser", updatedUser)
 
-      // const currentUser = state.currentUser.find(user => user.id === action.payload.user.id)
-      // const updatedCurrentUser = state.currentUser.find(user => user.id === addToCurrentUser.id ? addToCurrentUser : user)
-      // return { ...state, places: addReviewToPlace, currentUser: addToCurrentUser };
       return { ...state, places: updatedPlaces, currentUser: addToCurrentUser };
       // return { ...state, places: updatedPlaces, currentUser: updatedUser };
 
 
 
     case "EDIT_PLACE_REVIEW":
-      //console.log("action p", action.payload)
+      console.log("action p", action.payload)
       const place = state.places.find(place => place.id === action.payload.place.id );
       const updatedReviews = place.reviews.map(review => review.id === action.payload.id ? action.payload : review);
       const updatedPlace = { 
@@ -56,24 +53,48 @@ export const placesReducer = (state = initialState, action) => {
         reviews: updatedReviews
       }
       const updatedPlaceReview = state.places.map(place => place.id === updatedPlace.id ? updatedPlace : place);
+      
+      console.log("updatedPlaceReview", updatedPlaceReview)
+      
       return {
         ...state,
         places: updatedPlaceReview
       };
 
     case "DELETE_PLACE_REVIEW":
-      return state.places.filter((review) => review.id !== action.payload);
+      const reviewIdToDelete = action.payload;
+      const updatedPlacesAfterDelete = state.places.map(place => ({
+       ...place,
+      reviews: place.reviews.filter(review => review.id !== reviewIdToDelete)
+        }));
+      return { ...state, places: updatedPlacesAfterDelete };
     case "DELETE_USER_REVIEW":
+      // const updatedUserReviews = state.currentUser.reviews.filter(
+      //   (review) => review.id !== action.payload
+      // );
+      // return {
+      //   ...state,
+      //   currentUser: {
+      //     ...state.currentUser,
+      //     reviews: updatedUserReviews,
+      //   },
+      // };
+      const reviewIdToDeleteUser = action.payload;
+      const updatedPlacesAfterUserReviewDelete = state.places.map(place => ({
+      ...place,
+      reviews: place.reviews.filter(review => review.id !== reviewIdToDeleteUser)
+      }));
       const updatedUserReviews = state.currentUser.reviews.filter(
-        (review) => review.id !== action.payload
-      );
-      return {
-        ...state,
-        currentUser: {
-          ...state.currentUser,
-          reviews: updatedUserReviews,
-        },
-      };
+      review => review.id !== reviewIdToDeleteUser
+    );
+  return {
+    ...state,
+    places: updatedPlacesAfterUserReviewDelete,
+    currentUser: {
+      ...state.currentUser,
+      reviews: updatedUserReviews,
+    },
+  };
     default:
       return state;
   }

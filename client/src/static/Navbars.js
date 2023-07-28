@@ -40,7 +40,7 @@ const Navbars = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to = '/places' className="flex items-center"> PLaces </Link>
+        <Link to = '/places' className="flex items-center"> Places To Visit </Link>
       </Typography>
       {/* <Typography
         as="li"
@@ -58,9 +58,11 @@ const Navbars = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to ="/places/user-reviews" className="h-[18px] w-[18px]" >
-          <UserCircleIcon className="h-[18px] w-[18px]" />
-          Account: {currentUser.username} </Link>
+        <Link to ="/places/user-reviews" className="flex items-center gap-2 py-2 pr-4 focus-within:hover:bg-pink-200">
+          <UserCircleIcon className="h-[18px] w-[18px] " />
+          Account: 
+          <h1><b>{currentUser.username}</b></h1>
+          </Link>
       </Typography>
       <Button
         variant="gradient"

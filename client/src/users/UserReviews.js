@@ -10,10 +10,11 @@ import {
   CardBody,
   Typography
   } from "@material-tailwind/react";  
+import { initializeUseSelector } from 'react-redux/es/hooks/useSelector';
 
 
 const UserReviews = () => {
-  const { currentUser } = useSelector(store => store.usersReducer)
+  const { currentUser }  = useSelector(store => store.usersReducer)
   console.log( "currentUser at UserReviews", currentUser)
 
   const navigate = useNavigate();
@@ -24,16 +25,19 @@ const UserReviews = () => {
     dispatch(deleteReview(id))
   };
 
-  const user_reviews = currentUser?.reviews?.map(review =>
+  const user_reviews = currentUser.reviews?.map(review =>
+
     <div key={review.id} >
       <br/>
     <Card className="w-full max-w-[26rem] shadow-lg" >
     <CardBody>
         {/* <div className="mb-3 flex items-center justify-between"> */}
+      <Link to ={`/places/${review.place_id}`}>
       <img src={review.place_image} width="500" height="333"/>
+      </Link>
       <h6>{ review.place_name }</h6>
-      <h2>Title: { review.review_title }</h2>
-      <p> Review: { review.review_body }</p>
+      <h2>Title: { review.title }</h2>
+      <p> Review: { review.body }</p>
       <br/>
       <p> Safe: { String(review.safe) } </p>
       <p>Budget Friendly: { String(review.budget_friendly) }</p>
@@ -49,8 +53,8 @@ const UserReviews = () => {
     </Card>
     <br/>
     </div>
-    )
-
+  )
+  
 
    // Render the "You have no reviews" notification if user_reviews is empty
    const noReviewsNotification = (
@@ -60,11 +64,12 @@ const UserReviews = () => {
       </CardBody>
     </Card>
   );
+   
 
 
   return (
     <>
-    <div class="h-170 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600">
+    <div className="h-170 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600">
       &nbsp;
       <Typography color="white" className="font-sans font-bold text-xl text-center underline decoration-wavy">
        MY REVIEWS
