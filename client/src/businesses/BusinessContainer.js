@@ -23,6 +23,7 @@ const BusinessContainer = () => {
       {businessCards}
       </div>
    </div>
+
    </>
 
   );

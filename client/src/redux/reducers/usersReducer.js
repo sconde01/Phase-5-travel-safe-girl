@@ -4,7 +4,10 @@ import { updateResource } from "../../Globals"
 
 const initialState = {
   users: [],
-  currentUser: null,
+  // currentUser: null,
+  currentUser: {
+    reviews: [] //set a default value for currenUser.reviews as an empty array?
+  }, 
   loggedIn: false,
   reviews: []
 }
@@ -37,37 +40,51 @@ const usersReducer = (state= initialState, action) => {
         users: [...state.users, action.payload]
       }
 
-      
+     
+    case "ADD_USER_REVIEW":
+    return {
+      ...state,
+        currentUser: {
+          ...state.currentUser,
+        reviews: [...state.currentUser.reviews, action.payload],
+      },
+    };
+
     case "EDIT_USER_REVIEW":
-      console.log("actin.payload", action.payload)
+      console.log("action.payload", action.payload)
       // const cUser = state.currentUser.id === action.payload.user.id ;
       // console.log("user", cUser)
       const updatedReview = state.currentUser.reviews.map(review => review.id === action.payload.id ? action.payload : review);
-      
       console.log ("updatedReview",updatedReview)
+      
 
       const updatedUser = {
         ...state.currentUser,
         reviews: updatedReview
       }
-
       console.log("udpatedUser", updatedUser)
-
-
-      // const updatedUserReview = state.currentUser.review === updatedUser ? updatedUser : state.currentUser.review;
-      
-      // console.log("updatedUserReview", updatedUserReview)
       
       return {
         ...state,
-        reviews: updatedUser
+        currentUser: updatedUser
       };
 
+      // case "DELETE_USER_REVIEW":
+      //   return {
+      //     ...state.currentUser,
+      //     reviews: state.reviews.filter((review) => review.id !== action.payload)
+      //   }
       case "DELETE_USER_REVIEW":
         return {
-          ...state.currentUser,
-          reviews: state.reviews.filter((review) => review.id !== action.payload)
-        }
+          ...state,
+          currentUser: {
+            ...state.currentUser,
+          reviews: state.currentUser.reviews.filter(
+            (review) => review.id !== action.payload
+              ),
+            },
+      };
+
     
     case "LOGOUT_USER":
       return {

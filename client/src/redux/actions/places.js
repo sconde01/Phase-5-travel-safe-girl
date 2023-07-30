@@ -72,13 +72,21 @@ export const addReview = (formData, navigate, setErrors, place_id) => {
     } else {
       //
      console.log("review data", data)
-        const action = {
+        const actionPlace = {
           type: "ADD_PLACE_REVIEW",
           payload: data
         }
-        dispatch(action);
-        console.log(action.payload, "payload")
+        dispatch(actionPlace);
+        console.log( "actionPlace", actionPlace)
         navigate('/places/user-reviews');
+
+        const actionUser = {
+          type: "ADD_USER_REVIEW",
+          payload: data
+        }
+        dispatch(actionUser);
+        console.log("actionUSer", actionUser)
+        navigate('/places/user-reviews')
     } 
     });
   }
@@ -173,7 +181,7 @@ export const deleteReview = (id) => {
                payload: id
             })
             dispatch({
-               type: "DELETE_USERS_REVIEW",
+               type: "DELETE_USER_REVIEW",
                payload: id
             })
           }

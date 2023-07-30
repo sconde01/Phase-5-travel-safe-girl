@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import {
@@ -21,11 +21,18 @@ const business = businesses.find(business => business?.id === id);
 
 
   return (
+    <>
     <div>BusinessPage
          <h1>{business?.name}</h1>
         <img src = {business?.image_url}/>
          **next list the places that this business has listed on here**
     </div>
+
+    
+
+
+    
+</>
   )
 }
 

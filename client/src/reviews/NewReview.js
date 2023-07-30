@@ -67,16 +67,17 @@ const NewReview = () => {
 
   
   return (
-    <div>
-    <h1><center>Add a Review for
-      <br/>
-      <b>{ place?.name }!</b></center></h1>
-    <center><img src={ place?.image_url }alt="img-blur-shadow"  className='contain' /></center>
+    <div className="h-172 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600">
+    <br/>
+    <label className="block uppercase tracking-wide text-white text-xl font-bold mb-2"><center>Add a Review for
+    <br/>
+    <b>{ place?.name }!</b></center></label>
+    <center><img src={ place?.image_url }alt="img-blur-shadow"  className='h-96 w-96 rounded-full object-cover object-center' /></center>
     
-    <form className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3" onSubmit={handleSubmit}>
+    <form className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3 " onSubmit={handleSubmit}>
     <div className="flex flex-wrap -mx-3 mb-6">
       <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
+        <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="grid-first-name">
           Title of your review
         </label>
         <input 
@@ -93,7 +94,7 @@ const NewReview = () => {
 
     <div className="flex flex-wrap -mx-3 mb-6">
       <div className="w-full px-3">
-        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
+        <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" >
           Review
         </label>
         <textarea 
@@ -110,7 +111,7 @@ const NewReview = () => {
 
     <div className="flex flex-wrap -mx-3 mb-2">
       <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
+        <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="grid-state">
           Did you feel safe at this place?
         </label>
         <div className="relative">
@@ -129,7 +130,7 @@ const NewReview = () => {
       </div>
       
       <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
+        <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor="grid-state">
           Is this place budget friendly?
         </label>
         <div className="relative">
@@ -147,8 +148,9 @@ const NewReview = () => {
         </div>
       </div>
       </div>
-      <Button className="mt-5 ml-7 mr-7 w-90 place-content-center pt-3" type="submit" value="Add Place" > Add Review</Button>
+      <Button className="mt-5 ml-7 mr-7 w-90 justify-center pt-3" type="submit" value="Add Place" > Add Review</Button>
 </form>
+<br/>
   </div>
   )
 }

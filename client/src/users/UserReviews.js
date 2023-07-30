@@ -10,7 +10,6 @@ import {
   CardBody,
   Typography
   } from "@material-tailwind/react";  
-import { initializeUseSelector } from 'react-redux/es/hooks/useSelector';
 
 
 const UserReviews = () => {
@@ -25,17 +24,18 @@ const UserReviews = () => {
     dispatch(deleteReview(id))
   };
 
-  const user_reviews = currentUser.reviews?.map(review =>
-
+  //console.log user_reviews to see currentUser.reviews
+  const user_reviews = currentUser.reviews?.map(review => 
+  
     <div key={review.id} >
       <br/>
     <Card className="w-full max-w-[26rem] shadow-lg" >
     <CardBody>
         {/* <div className="mb-3 flex items-center justify-between"> */}
       <Link to ={`/places/${review.place_id}`}>
-      <img src={review.place_image} width="500" height="333"/>
+      <img src={review?.place_image} width="500" height="333"/>
       </Link>
-      <h6>{ review.place_name }</h6>
+      <h6>{ review?.place_name }</h6>
       <h2>Title: { review.title }</h2>
       <p> Review: { review.body }</p>
       <br/>
@@ -65,7 +65,7 @@ const UserReviews = () => {
     </Card>
   );
    
-
+  // if (!currentUser || !currentUser.reviews || currentUser.reviews.length === 0) 
 
   return (
     <>

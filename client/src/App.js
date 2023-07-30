@@ -19,6 +19,7 @@ import BusinessContainer from "./businesses/BusinessContainer";
 import BusinessPage from "./businesses/BusinessPage";
 import { loadBusinesses } from "./redux/actions/businesses";
 import Footer from "./static/Footer";
+import RegisterBusiness from "./businesses/RegisterBusiness";
 
 function App() {
   // const reduxState = useSelector((store) => store );
@@ -48,6 +49,7 @@ function App() {
             <Route path="/reviews/:id/edit" element= { <EditReview/>} />
             <Route path="/businesses" element= { <BusinessContainer/>} />
             <Route path="/businesses/:id" element= { <BusinessPage/>} />
+            <Route path="/businesses/register" element= { <RegisterBusiness/>} />
             <Route path="/login" element= { <Login/>} />
             <Route path="/signup" element= { <Signup/>} />
           </Routes>
