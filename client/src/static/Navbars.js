@@ -109,12 +109,8 @@ const Navbars = () => {
   return (
     <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-    <Typography
-          as="a"
-          href="/"
-          className="mr-4 cursor-pointer py-1.5 font-medium"
-        >
-          Home Page
+       <Typography className = "text-xl text-center font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+         <Link to = '/'>  Home Page </Link>
         </Typography>
 
       { loggedIn ? navListLoggedIn() : navListLoggedOut() }

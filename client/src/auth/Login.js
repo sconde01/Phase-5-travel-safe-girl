@@ -9,13 +9,16 @@ import {
   Input,
   Button,
   Typography,
+  Checkbox
 } from "@material-tailwind/react";
 
 const Login = () => {
   const { loggedIn } = useSelector(store => store.usersReducer);
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  console.log('inside of the login component', loggedIn);
+  const [showPassword, setShowPassword] = useState(false);
+
+  //console.log('inside of the login component', loggedIn);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,6 +40,10 @@ const Login = () => {
     const user = { username, password }
     dispatch(loginUser(user, navigate))
   }
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword)
+  };
 
   return (
     <div className="grid place-content-center h-screen bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600">
@@ -62,13 +69,23 @@ const Login = () => {
           <Input 
             size="lg" 
             label="Password" 
-            type="password" 
+            type={showPassword ? "text" : "password"}  
             name="password" 
             id="password"
             value={ password }
             onChange={ e => setPassword(e.target.value) }
             required={true}
             />
+
+          <Checkbox 
+              value="allowExtraEmails" 
+              color= "blue"
+              label = {
+                <Typography color="white" className="flex font-medium">
+                  Show Password
+                 </Typography>}
+              onClick={togglePassword} 
+              />
         </div>
         <div className = "flex flex-col items-center"> 
         <Button className="mt-6 " type="submit">

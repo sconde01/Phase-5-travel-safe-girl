@@ -1,13 +1,13 @@
 // client/src/components/App.js
 import { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Navbars from "./static/Navbars";
 import Home from "./static/Home";
 import PlacesContainer from "./places/PlacesContainer";
 import { loadPlaces } from './redux/actions/places';
 import PlaceReviews from "./places/PlaceReviews";
-import NewPlaceForm from "./places/NewPlaceForm";
+// import NewPlaceForm from "./places/NewPlaceForm";
 import Signup from "./auth/Signup";
 import Login from "./auth/Login";
 import Errors from "./errors/Errors";
@@ -26,19 +26,30 @@ function App() {
   // console.log(reduxState)
 
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(loadPlaces())
     dispatch(loadUsers())
     dispatch(loadCurrentUser())
     dispatch(loadBusinesses())
   }, [dispatch])
+  
+  //content in components are too big, footer is throwing off page load
+  const ScrollToTopOnRouteChange = () => {
+    const location = useLocation();
+      useEffect(() => {
+        window.scrollTo(0, 0);
+        }, [location]);
+
+        return null;
+        };
 
   return (
 
     <Router>
         <Navbars/>
         <Errors/>
+        <ScrollToTopOnRouteChange/>
           <Routes>
             <Route path="/" element= { <Home/>} />
             <Route path="/places" element= { <PlacesContainer/>} />
@@ -53,7 +64,7 @@ function App() {
             <Route path="/login" element= { <Login/>} />
             <Route path="/signup" element= { <Signup/>} />
           </Routes>
-          <Footer/>
+        <Footer/>
   </Router>
   )
 

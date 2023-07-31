@@ -34,7 +34,7 @@ export const addPlace = (formData, navigate, setErrors) => {
     })
       .then(r => r.json())
       .then(data => {
-        console.log("new place data", data)
+        // console.log("new place data", data)
         if(data.errors){
           dispatch(setErrors(data.errors));
         } else {
@@ -52,9 +52,9 @@ export const addPlace = (formData, navigate, setErrors) => {
 
 export const addReview = (formData, navigate, setErrors, place_id) => {
 
-    console.log(JSON.stringify({
-      formData,
-  }), "addReview action!")
+  //   console.log(JSON.stringify({
+  //     formData,
+  // }), "addReview action!")
 
   return dispatch => {
     fetch('/reviews', {
@@ -70,14 +70,13 @@ export const addReview = (formData, navigate, setErrors, place_id) => {
       if(data.errors) {
         dispatch(setErrors(data.errors));
     } else {
-      //
-     console.log("review data", data)
+      //console.log("review data", data)
         const actionPlace = {
           type: "ADD_PLACE_REVIEW",
           payload: data
         }
         dispatch(actionPlace);
-        console.log( "actionPlace", actionPlace)
+        // console.log( "actionPlace", actionPlace)
         navigate('/places/user-reviews');
 
         const actionUser = {
@@ -150,7 +149,7 @@ export const editReview = (id, formData, navigate, setErrors) => {
           payload: data
         }
         dispatch(editPlaceReviewAction);
-        console.log(data, "edited place review")
+        // console.log(data, "edited place review")
         navigate('/places');
 
         const editUserReviewAction = {
@@ -158,7 +157,7 @@ export const editReview = (id, formData, navigate, setErrors) => {
           payload: data
         }
         dispatch(editUserReviewAction);
-        console.log(data, "edited user review")
+        // console.log(data, "edited user review")
         navigate('/places/user-reviews');
     } 
     });

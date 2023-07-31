@@ -12,20 +12,16 @@ const NewReview = () => {
   
   const place = places.find(place => place?.id === id);
   
-  console.log("currentUser", currentUser)
+  // console.log("currentUser", currentUser)
 
-  // const user_id = currentUser?.id;
   const placeId = place ? place.id : null;
 
-  // console.log ("user_id", user_id)
-  // console.log("placeId", placeId)
   const initialState = {
     title: "",
     body: "",
     safe: "",
     budget_friendly: "",
     place_id: placeId
-    // user_id: user.id
   }
   
   const [ formData, setFormData ] = useState(initialState)
@@ -39,7 +35,7 @@ const NewReview = () => {
       navigate('/login')
     }
     return () => {
-      dispatch(clearErrors)
+      dispatch(clearErrors())
     }
   }, [loggedIn, navigate, dispatch])
 
@@ -55,13 +51,10 @@ const NewReview = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-//put a debuggger
-//check to see what i'm sending back in formData --sources -->scope
 //what my action.payload when I get to addReview dispatch action
 //once I figure out action.payload, move on to reducer
 //debugger
 
-    // dispatch(addReview(formData, navigate))
     dispatch(addReview(formData, navigate, setErrors))
   }
 

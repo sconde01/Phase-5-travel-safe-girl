@@ -1,14 +1,14 @@
 import React from 'react';
+import {  Link } from 'react-router-dom';
 import {
-  Navbar,
-  MobileNav,
   Typography,
   Button,
-  IconButton,
   Card,
 } from "@material-tailwind/react";
 
+
 function Home() {
+
   return (
     <div className="h-172 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600">
 
@@ -57,11 +57,15 @@ function Home() {
     <br/>
     <br/>
     <br/>
-
-
-
-
-
+    <div className=" flex items-center justify-center ">
+    <Button className="block w-25 px-24 py-3 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"> <Link to= '/places'> <p className="text-2xl">Start Exploring Places</p></Link> </Button>
+    </div>
+   <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
 
   </div>
 )}

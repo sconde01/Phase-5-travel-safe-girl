@@ -14,7 +14,7 @@ import {
 
 const UserReviews = () => {
   const { currentUser }  = useSelector(store => store.usersReducer)
-  console.log( "currentUser at UserReviews", currentUser)
+  // console.log( "currentUser at UserReviews", currentUser)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,23 +25,27 @@ const UserReviews = () => {
   };
 
   //console.log user_reviews to see currentUser.reviews
-  const user_reviews = currentUser.reviews?.map(review => 
+  const user_reviews = currentUser?.reviews?.map(review => 
   
     <div key={review.id} >
       <br/>
     <Card className="w-full max-w-[26rem] shadow-lg" >
     <CardBody>
-        {/* <div className="mb-3 flex items-center justify-between"> */}
       <Link to ={`/places/${review.place_id}`}>
-      <img src={review?.place_image} width="500" height="333"/>
+      <img src={review.place_image} width="500" height="333"/>
       </Link>
-      <h6>{ review?.place_name }</h6>
-      <h2>Title: { review.title }</h2>
-      <p> Review: { review.body }</p>
       <br/>
-      <p> Safe: { String(review.safe) } </p>
-      <p>Budget Friendly: { String(review.budget_friendly) }</p>
+      <Typography className ="text-2xl font-bold">{ review.place_name }
+      </Typography>
+      <br/>
+      <h2><b>Title:</b> { review.title }</h2>
+      <p><b> Review:</b> { review.body }</p>
+      <br/>
+      <p><b>Safe:</b> { String(review.safe) } </p>
+      <p><b>Budget Friendly:</b> { String(review.budget_friendly) }</p>
       <i>Written: {new Date(Date.parse(review.created_at)).toLocaleDateString('en-US')}</i>
+      <br/>
+      <i>Updated: {new Date(Date.parse(review.updated_at)).toLocaleDateString('en-US')}</i>
       <br/>
       </CardBody>
       {/* This link routes user to edit form */}

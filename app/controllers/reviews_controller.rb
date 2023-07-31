@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :find_review, only: [:update, :destroy, :show]
-  skip_before_action :authorize, only: [:index]
+  skip_before_action :authorize, only: [:index, :show]
 
   # GET /reviews ...instance method for if there are no reviews
   def index
@@ -47,7 +47,7 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-    params.permit(:title, :body, :safe, :budget_friendly, :place_id, :user_id)
+    params.require(:review).permit(:title, :body, :safe, :budget_friendly, :place_id, :place_name, :place_image)
     end
     
     def find_review

@@ -7,8 +7,7 @@ import {Button} from "@material-tailwind/react";
 
 const NewPlaceForm = () => {
   const { loggedIn, currentUser } = useSelector(store => store.usersReducer)
-  console.log("loggedin NewPlace form", loggedIn)
-  console.log("current user at NewPlaceform", currentUser)
+  // console.log("current user at NewPlaceform", currentUser)
 
   const initialState = {
     name: "",
@@ -26,21 +25,19 @@ const NewPlaceForm = () => {
  // Inside NewPlaceForm component
 
 
-console.log("active route:", window.location.pathname);
-console.log("navigate:", navigate);
+// console.log("active route:", window.location.pathname);
 
   useEffect(() => {
     if(!loggedIn) {
       navigate('/login')
     }
     return () => {
-      dispatch(clearErrors)
+      dispatch(clearErrors())
     }
   }, [loggedIn, navigate, dispatch])
 
   const handleChange = e => {
     const {name, value} = e.target;
-    console.log(value)
     setFormData({
       ...formData,
       [name]:value

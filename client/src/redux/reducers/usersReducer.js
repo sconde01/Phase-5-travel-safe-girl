@@ -51,18 +51,18 @@ const usersReducer = (state= initialState, action) => {
     };
 
     case "EDIT_USER_REVIEW":
-      console.log("action.payload", action.payload)
+      // console.log("action.payload", action.payload)
       // const cUser = state.currentUser.id === action.payload.user.id ;
       // console.log("user", cUser)
       const updatedReview = state.currentUser.reviews.map(review => review.id === action.payload.id ? action.payload : review);
-      console.log ("updatedReview",updatedReview)
+      // console.log ("updatedReview",updatedReview)
       
 
       const updatedUser = {
         ...state.currentUser,
         reviews: updatedReview
       }
-      console.log("udpatedUser", updatedUser)
+      // console.log("udpatedUser", updatedUser)
       
       return {
         ...state,

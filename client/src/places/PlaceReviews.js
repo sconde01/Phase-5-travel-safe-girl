@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors } from '../redux/actions/errors';
 
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   Typography,
   Button
   } from "@material-tailwind/react";  
-import placesReducer from '../redux/reducers/placesReducer';
+  import {
+    UserCircleIcon
+  } from "@heroicons/react/24/outline";
   
 
 const PlaceReviews = () => {
@@ -19,59 +20,61 @@ const PlaceReviews = () => {
   const { loggedIn } = useSelector(store => store.usersReducer)
   const id = parseInt(useParams().id);
 
-  console.log("placesReducer at Place REviews", places)
+  //console.log("placesReducer at Place REviews", places)
 
   const place = places?.find(place => place.id === id);
-  console.log ("place at reviews", place)
+  //console.log ("place at reviews", place)
 
   const show_reviews = place?.reviews?.map(review =>
+    <div key={review.id} className="border-double border-4 border-indigo-600 rounded">
+    <div className ="pl-8">
       
-    <div className="border-double border-4 border-indigo-600">
-    <div key={review.id} className ="pl-8">
-      <h6 className="italic">user: { review.username }</h6>
+      <h6 className="italic flex items-center gap-2 py-2 pr-4 "><UserCircleIcon className="h-[18px] w-[18px] " />{ review.username }</h6>
       <br/>
-      <h1 className="font-bold">{ review.title }</h1>
+      <Typography className="font-bold text-lg">{ review.title }
+      </Typography>
       <br/>
-      <p><i>Review:</i></p>
       <p>{ review.body }</p>
       <br/>
-      <p> Safe: { String(review.safe) } </p>
+      <p> <b>Safe:</b>{ String(review.safe) } </p>
       <br/>
-      <p>Budget Friendly: { String(review.budget_friendly) }</p>
+      <p><b>Budget Friendly:</b> { String(review.budget_friendly) }</p>
       <br/>
       <i>Written: {new Date(Date.parse(review.created_at)).toLocaleDateString('en-US')}</i>
     </div>
     </div>
+   
 
  
     )
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    if(!loggedIn) {
-      navigate('/login')
-    }
-    return () => {
-      dispatch(clearErrors)
-    }
-  }, [loggedIn, navigate, dispatch])
+  // useEffect(() => {
+  //   if(!loggedIn) {
+  //     navigate('/login')
+  //   }
+  //   return () => {
+  //     dispatch(clearErrors())
+  //   }
+  // }, [loggedIn, navigate, dispatch])
 
-  if (!place) {
-    return <div>Loading...</div>; // You can also use a loading spinner here
-  }
+  // if (!place) {
+  //   return <div>Loading...</div>; 
+  // }
  
   return (
     <div className ="h-200 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600">
-      <div key={place.id} className ="flex items-center justify-center ">
+     
+      <div key={place.id} className="mx-auto max-w-screen-md py-12">
       <br/>
       <br/>
-    <Card className="shadow-lg">
+    <Card key={place.id} className="shadow-lg mb-12 overflow-hidden border rounded ">
     <CardBody key={place.id}>
-      <img src={ place.image_url }alt="img-blur-shadow" layout="fill" />
+      <img src={ place?.image_url }alt="img-blur-shadow" layout="fill" />
       <Typography variant="h5" color="blue-gray" className="mb-2">
-      { place.name }
+      { place?.name }
       </Typography>
       <Typography>
       { place?.description }

@@ -12,8 +12,7 @@ const EditReview = () => {
   
   const review = currentUser?.reviews?.find(review => review.id === id);
   
-  console.log("currentUser", currentUser)
-  console.log("review at editreview",review)
+  // console.log("review at editreview",review)
 
   
   // const placeId = place ? place.id : null;
@@ -24,7 +23,7 @@ const EditReview = () => {
     safe: review.safe,
     budget_friendly: review.budget_friendly,
     // place_id: placeId,
-    user_id: currentUser?.id
+    // user_id: currentUser?.id
   }
   
   const [ formData, setFormData ] = useState(initialState)
