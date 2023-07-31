@@ -5,6 +5,7 @@ import {
   Button,
   Card,
 } from "@material-tailwind/react";
+// import Barb_review  from '../assets/reviews/Barb_review.png';
 
 
 function Home() {
@@ -36,6 +37,26 @@ function Home() {
   <img
       className="h-96 w-96 rounded-full object-cover object-center"
       src="https://i.pinimg.com/564x/9f/6e/0a/9f6e0ad6e004c95e17f0e8072a892636.jpg"
+      alt="nature"
+    />
+  <img
+      className="h-96 w-96 rounded-full object-cover object-center"
+      src="https://i.pinimg.com/564x/16/43/b3/1643b30a57089e9dc69508ea0945226a.jpg"
+      alt="girl traveling"
+    />
+  <img
+      className="h-96 w-96 rounded-full object-cover object-center"
+      src="https://i.pinimg.com/564x/17/30/4d/17304d64175c47f4b65293c2b58ec0b1.jpg"
+      alt="nature "
+    />
+    </div>
+    <br/>
+    <br/>
+    <br/>
+  {/* <div className="flex flex-wrap grid-cols-4 gap-10 justify-center">
+  <img
+      className="h-96 w-96 squared-full object-fit: cover object-center"
+      src={Barb_review}
       alt="nature image"
     />
   <img
@@ -48,10 +69,7 @@ function Home() {
       src="https://i.pinimg.com/564x/17/30/4d/17304d64175c47f4b65293c2b58ec0b1.jpg"
       alt="nature image"
     />
-    </div>
-    <br/>
-    <br/>
-    <br/>
+    </div> */}
     <br/>
     <br/>
     <br/>

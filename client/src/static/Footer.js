@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
         <img src={ stephlogo } alt="logo-ct" className="w-12 h-12" />
         <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
-          <li>
+          {/* <li>
             <Typography
               as="a"
               href="#"
@@ -17,7 +17,7 @@ const Footer = () => {
             >
               About Us
             </Typography>
-          </li>
+          </li> */}
           <li>
             <Typography
               as="a"

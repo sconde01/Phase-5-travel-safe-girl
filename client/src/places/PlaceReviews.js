@@ -91,7 +91,7 @@ const PlaceReviews = () => {
       </Typography>
      <>
      Business: &nbsp;
-      <Link key={place.id} to={(`/businesses/${id}`)}> { place?.business.name }</Link>
+      <Link key={place?.id} to={(`/businesses/${id}`)}> { place?.business.name }</Link>
      </> 
   
     </CardBody>
