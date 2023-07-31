@@ -80,7 +80,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-If you have any questions or feedback, feel free to contact us at support@travelsafegirl.com.
+If you have any questions or feedback, feel free to hit me up on linked in https://www.linkedin.com/in/stephanie-conde/.
 
 ## Acknowledgments
 
