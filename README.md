@@ -1,7 +1,5 @@
 # README
 
-Sure! Below is a sample README for your "Travel Safe Girl" app:
-
 # Travel Safe Girl
 
 Travel Safe Girl is a web application designed to empower and support women travelers by providing a platform where they can share and access reviews about various travel destinations. The app aims to promote safe and budget-friendly travel experiences for women all around the world.
