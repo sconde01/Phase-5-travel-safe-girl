@@ -1,14 +1,13 @@
-import { updateResource, addResource, updateResourceCollection } from "../../Globals";
+// import { updateResource, addResource, updateResourceCollection } from "../../Globals";
 
 const initialState = {
   reviews: [],
   currentUser: {
     reviews: [], //set a default value for currenUser.reviews as an empty array?
-  }, // This will be updated later when the user logs in
+  }, 
   places: [],
   users: [],
 };
-//console.log("initial state", initialState)
 
 export const placesReducer = (state = initialState, action) => {
   switch (action.type) {

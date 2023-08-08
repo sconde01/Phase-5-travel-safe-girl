@@ -64,7 +64,7 @@ const Login = () => {
             id="username"
             value={ username }
             onChange={ e => setUsername(e.target.value) }
-            required={true}      
+            // required={true}      
              />
           <Input 
             size="lg" 
@@ -74,7 +74,7 @@ const Login = () => {
             id="password"
             value={ password }
             onChange={ e => setPassword(e.target.value) }
-            required={true}
+            // required={true}
             />
 
           <Checkbox 

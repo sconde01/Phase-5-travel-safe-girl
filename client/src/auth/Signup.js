@@ -68,7 +68,7 @@ const Signup = () => {
             id="email"
             value={ email }
             onChange={ e => setEmail(e.target.value) }
-            required={true}      
+            // required={true}      
              />
           <Input 
             size="lg" 
@@ -79,7 +79,7 @@ const Signup = () => {
             id="username"
             value={ username }
             onChange={ e => setUsername(e.target.value) }
-            required={true}      
+            // required={true}      
              />
           <Input 
             size="lg"
@@ -90,7 +90,7 @@ const Signup = () => {
             id="password"
             value={ password }
             onChange={ e => setPassword(e.target.value) }
-            required={true}
+            // required={true}
             />
           <Input 
             size="lg"
@@ -101,7 +101,7 @@ const Signup = () => {
             id="confirm password"
             value={ confirmPassword }
             onChange={ e => setConfirmPassword(e.target.value) }
-            required={true}
+            // required={true}
             />
 
           <Checkbox 

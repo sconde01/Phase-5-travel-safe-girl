@@ -78,6 +78,7 @@ const NewReview = () => {
           id="title" 
           type="text"
           name = "title" 
+          // required={true}
           placeholder="Title your review"
           value={ formData.title}
           onChange={handleChange}/>
@@ -97,6 +98,7 @@ const NewReview = () => {
           type="text" 
           placeholder="Tell us about this place"
           value={ formData.body}
+          // required={true}
           onChange={handleChange}/>
        <p className="text-gray-600 text-xs italic">Max 500 characters</p>
       </div>
@@ -114,6 +116,7 @@ const NewReview = () => {
             name ="safe"
             // type = "text"
             value={ formData.safe}
+            // required={true}
             onChange={handleChange}>
              <option> -- select an option -- </option>
              <option value="true">Yes</option>
@@ -133,6 +136,7 @@ const NewReview = () => {
             name ="budget_friendly"
             // type = "text"
             value={ formData.budget_friendly}
+            // required={true}
             onChange={handleChange}>
              <option> -- select an option -- </option>
              <option value="true">Yes</option>
