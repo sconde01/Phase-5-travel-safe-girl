@@ -89,7 +89,7 @@ const Login = () => {
         </div>
         <div className = "flex flex-col items-center"> 
         <Button className="mt-6 " type="submit">
-          Sign IN
+          Sign In
         </Button>
         <Typography color="gray" className="mt-4 text-center font-normal">
           Don't have an account?{" "}
